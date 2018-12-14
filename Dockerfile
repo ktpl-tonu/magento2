@@ -39,12 +39,14 @@ ADD files/magento-nginx.conf /etc/nginx/sites-available/magento-nginx.conf
 #COPY /mnt/data/config.php ./app/config.php
 #COPY /mnt/data/auth.json ./auth.json
 
-RUN mkdir /run/php
 
-RUN chown -R magento:magento /var/www/html/magento \
+RUN mkdir /run/php \
+    && chown -R magento:magento /var/www/html/magento \
     && su magento \
-    && composer install \
-    && bin/magento setup:upgrade && bin/magento deploy:mode:set production
+#    && composer install \
+    && php bin/magento setup:upgrade && php bin/magento deploy:mode:set production && exit \
+    && chown -R magento:magento /var/www/html/magento/webroot/var \
+    && && chmod -R 775 /var/www/html/magento/webroot/var
 
 EXPOSE 22 9000 80
 
