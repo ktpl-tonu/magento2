@@ -39,17 +39,14 @@ ADD files/magento-nginx.conf /etc/nginx/sites-available/magento-nginx.conf
 #COPY /mnt/data/config.php ./app/config.php
 #COPY /mnt/data/auth.json ./auth.json
 
-
-
-RUN chown -R magento:magento /var/www/html/magento \
-    && su magento #&& composer install \
-    && su magento \
-    && bin/magento setup:upgrade && bin/magento deploy:mode:set production
-
 RUN mkdir /run/php
 
-EXPOSE 22
-EXPOSE 9000
-EXPOSE 80
+RUN chown -R magento:magento /var/www/html/magento \
+    && su magento \
+    && composer install \
+    && bin/magento setup:upgrade && bin/magento deploy:mode:set production
+
+EXPOSE 22 9000 80
+
 ENTRYPOINT ["/docker-entrypoint.sh"]
 
