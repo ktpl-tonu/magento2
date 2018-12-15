@@ -3,7 +3,7 @@ FROM ubuntu:16.04
 MAINTAINER Tonu V
 
 ENV DEBIAN_FRONTEND=noninteractive
-
+ARG branch
 RUN apt-get update && apt-get install -y vim software-properties-common python-software-properties apt-transport-https curl zip language-pack-en-base net-tools nginx git \
 #    && apt-get update \
 #    && locale-gen en_US.UTF-8 \
@@ -22,7 +22,7 @@ RUN apt-get update && apt-get install -y vim software-properties-common python-s
 #    --filename=composer \
     && mkdir -p /var/www/html/magento/webroot \
     && cd /var/www/html/magento/webroot \
-    && git clone -b $BRANCH https://github.com/ktpl-tonu/magento2.git .
+    && git clone -b $branch https://github.com/ktpl-tonu/magento2.git .
 
 WORKDIR /var/www/html/magento/webroot
 
