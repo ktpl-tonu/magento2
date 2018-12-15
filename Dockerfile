@@ -45,7 +45,7 @@ RUN mkdir /run/php \
     && su magento \
 #    && composer install \
     && php bin/magento setup:upgrade && php bin/magento deploy:mode:set production \
-    && rm -rf update LICENSE.txt LICENSE_AFL.txt Gruntfile.js.sample COPYING.txt CHANGELOG.md app/code app/design dev index.php grunt-config.json.sample lib phpserver php.ini.sample package.json.sample nginx.conf.sample var/*
+    && rm -rf update LICENSE.txt LICENSE_AFL.txt Gruntfile.js.sample COPYING.txt CHANGELOG.md app/code app/design dev index.php grunt-config.json.sample lib phpserver php.ini.sample package.json.sample nginx.conf.sample var/* \
     && exit \
     && chown -R magento:magento /var/www/html/magento/webroot/var \
     && chmod -R 775 /var/www/html/magento/webroot/var
