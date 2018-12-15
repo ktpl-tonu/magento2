@@ -21,7 +21,7 @@ RUN apt-get update && apt-get install -y vim software-properties-common python-s
 #    --install-dir=/usr/bin \
 #    --filename=composer \
     && mkdir -p /var/www/html/magento/webroot \
-    && cd /var/www/html/magento/webroot \
+#    && cd /var/www/html/magento/webroot \
     && git clone -b $branch https://github.com/ktpl-tonu/magento2.git .
 
 WORKDIR /var/www/html/magento/webroot
